@@ -23,7 +23,7 @@ yarn add @ng-bootstrap/ng-bootstrap
 Edit the value of `outDir` in your new `.angular-cli.json`:
 
 ```
-"outDir": "../../wordpress/wp-content/themes/war-ng-template/src",
+"outDir": "../../wordpress/wp-content/themes/ng-war-theme/src",
 ```
 
 Optional:   
