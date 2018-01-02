@@ -1,6 +1,0 @@
-[submodule "war-api"]
-	path = wordpress/wp-content/plugins/war-api
-	url = https://github.com/SkyPressATX/war-api.git
-[submodule "ng-war-theme"]
-	path = wordpress/wp-content/themes/ng-war-theme
-	url = https://github.com/SkyPressATX/ng-war-theme.git
