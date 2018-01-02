@@ -1,0 +1,109 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# package locks
+/angular/package-lock.json
+/angular/yarn.lock
+/angular/yarn-error.log
+
+# compiled output
+/angular/dist
+/angular/tmp
+/angular/out-tsc
+
+# dependencies
+/angular/node_modules
+
+# IDEs and editors
+/angular/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/angular/.sass-cache
+/angular/connect.lock
+/angular/coverage
+/angular/libpeerconnection.log
+/angular/npm-debug.log
+/angular/testem.log
+/angular/typings
+
+# e2e
+/angular/e2e/*.js
+/angular/e2e/*.map
+
+# System Files
+.DS_Store
+Thumbs.db
+.svn
+.cvs
+*.bak
+*.swp
+
+# wpengine specific
+/wordpress/wp-content/object-cache.php
+/wordpress/wp-content/mu-plugins/mu-plugin.php
+/wordpress/wp-content/mu-plugins/slt-force-strong-passwords.php
+/wordpress/wp-content/mu-plugins/limit-login-attempts
+/wordpress/wp-content/mu-plugins/wpengine-common
+/wordpress/wp-content/mysql.sql
+
+/wordpress/wp-content/index.php
+/wordpress//wp-content/themes/twentyseventeen
+/wordpress/wp-content/themes/index.php
+/wordpress/wp-content/plugins/index.php
+
+# large/disallowed file types
+# a CDN should be used for these
+*.hqx
+*.bin
+*.exe
+*.dll
+*.deb
+*.dmg
+*.iso
+*.img
+*.msi
+*.msp
+*.msm
+*.mid
+*.midi
+*.kar
+*.mp3
+*.ogg
+*.m4a
+*.ra
+*.3gpp
+*.3gp
+*.mp4
+*.mpeg
+*.mpg
+*.mov
+*.webm
+*.flv
+*.m4v
+*.mng
+*.asx
+*.asf
+*.wmv
+*.avi
+
+# Any kind of .git anything
+/wordpress/wp-content/*.git*
+/wordpress/wp-content/*.git/*
+
+# No Composer Files
+*composer.*
+
+# No ng-template/src/index.html
+/wordpress/wp-content/themes/ng-war-theme/src/index.html
