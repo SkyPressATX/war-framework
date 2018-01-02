@@ -62,8 +62,12 @@ wordpress/wp-content/mysql.sql
 
 wordpress/wp-content/index.php
 wordpress/wp-content/themes/twentyseventeen
+wordpress/wp-content/themes/twentysixteen
+wordpress/wp-content/themes/twentyfifteen
 wordpress/wp-content/themes/index.php
 wordpress/wp-content/plugins/index.php
+wordpress/wp-content/plugins/akismet
+wordpress/wp-content/plugins/hello.php
 
 # large/disallowed file types
 # a CDN should be used for these
