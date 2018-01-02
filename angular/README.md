@@ -1,6 +1,5 @@
-# WAR NG Template
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.0.
+# NG WAR Theme
+This is the pre-build structure of an Angular project. The following adjustments compliment our workflow for creating a WordPress theme based on Angular.
 
 ## First Steps
 
