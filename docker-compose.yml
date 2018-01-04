@@ -2,8 +2,11 @@ version: '3'
 
 services:
     wordpress:
+<<<<<<< HEAD
         depends_on:
             - mysqldb
+=======
+>>>>>>> 5573d2c349b5153e4da6c048a0a91a3180145757
         image: wordpress:latest
         links:
             - mysqldb:mysql
