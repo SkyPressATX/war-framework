@@ -70,6 +70,7 @@ wordpress/wp-content/themes/twentysixteen
 wordpress/wp-content/themes/twentyfifteen
 wordpress/wp-content/plugins/akismet
 wordpress/wp-content/plugins/hello.php
+wordpress/wp-content/upgrade
 
 # large/disallowed file types
 # a CDN should be used for these
