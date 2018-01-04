@@ -19,6 +19,7 @@ Requires:
 * Run `docker-compose up -d`
 * Set alias for wp-cli commands `alias dwp='docker exec war-wordpress wp'`
 * Upgrade WordPress `dwp core upgrade`
+* Set directory and folder permissions `sudo find wordpress/. -type d -exec chmod 775 {} \;`  and `sudo find wordpress/. -type f -exec chmod 664 {} \;`
 * View README.md in `/wordpress/wp-content/plugins`
 * View README.md in `/wordpress/wp-content/themes`
 * View README.md in `/angular` directory
