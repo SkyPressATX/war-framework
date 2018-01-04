@@ -60,7 +60,11 @@ wordpress/wp-content/mu-plugins/limit-login-attempts
 wordpress/wp-content/mu-plugins/wpengine-common
 wordpress/wp-content/mysql.sql
 
+# extra WordPress files
+wordpress/*/index.html
 wordpress/wp-content/index.php
+wordpress/wp-content/themes/index.php
+wordpress/wp-content/plugins/index.php
 wordpress/wp-content/themes/twentyseventeen
 wordpress/wp-content/themes/twentysixteen
 wordpress/wp-content/themes/twentyfifteen
@@ -107,7 +111,4 @@ wordpress/wp-content/*.git*
 wordpress/wp-content/*.git/*
 
 # No Composer Files
-*composer.*
-
-# No ng-template/src/index.html
-wordpress/wp-content/themes/ng-war-theme/src/index.html
+#*composer.*
