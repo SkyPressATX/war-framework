@@ -2,9 +2,10 @@ version: '3'
 
 services:
     wordpress:
+        container_name: war-wordpress
         depends_on:
             - mysqldb
-        image: wordpress:latest
+        image: ohmydocker/docker-wordpress-wp-cli:latest
         links:
             - mysqldb:mysql
         volumes:
@@ -16,6 +17,7 @@ services:
             WORDPRESS_DB_PASSWORD: wordpress
 
     mysqldb:
+        container_name: war-mysql
         image: mysql:latest
         volumes:
             - db_data:/var/lib/mysql
@@ -26,6 +28,7 @@ services:
             MYSQL_PASSWORD: wordpress
 
     phpmyadmin:
+        container_name: war-pma
         image: phpmyadmin/phpmyadmin:latest
         links:
             - mysqldb:mysql
