@@ -1,7 +1,7 @@
-# WAR Framework
-This repo is a Starter Project to build Apps using WordPress Angular and the Rest API
+# Customer Experience API
+This repo holds the build and local development functions for the CX API
 
-v0.1.0
+v0.1.0-alpha
 
 Requires:
 
@@ -15,9 +15,7 @@ Requires:
 
 ## First steps
 
-* Fork or Clone this repo
+* Clone this repo
 * Run `docker-compose up -d`
-* If on linux: Set directory and folder permissions `sudo find wordpress/. -type d -exec chmod 775 {} \;`  and `sudo find wordpress/. -type f -exec chmod 664 {} \;`
-* View README.md in `/wordpress/wp-content/plugins`
-* View README.md in `/wordpress/wp-content/themes`
-* View README.md in `/angular` directory
+* `composer install` in `/wordpress/wp-content/plugins/cx-api`
+* `composer install` in `/wordpress/wp-content/themes/cx-ng-theme`
