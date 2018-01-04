@@ -4,24 +4,25 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+    "hash": "884f2b133ce1089aa2a888e7e8fe960e",
     "content-hash": "ef4c6ddc0a53f94192ae27fd0f93ac16",
     "packages": [
         {
             "name": "skypress/war-ng-theme",
-            "version": "v0.1.0-alpha",
+            "version": "v0.1.2-alpha",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SkyPressATX/war-ng-theme.git",
-                "reference": "c529fddeff933afb4bc29c37da60231e11a2792c"
+                "reference": "ccc59a894fb52d394f03d8fba9c7c620b2af4da2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SkyPressATX/war-ng-theme/zipball/c529fddeff933afb4bc29c37da60231e11a2792c",
-                "reference": "c529fddeff933afb4bc29c37da60231e11a2792c",
+                "url": "https://api.github.com/repos/SkyPressATX/war-ng-theme/zipball/ccc59a894fb52d394f03d8fba9c7c620b2af4da2",
+                "reference": "ccc59a894fb52d394f03d8fba9c7c620b2af4da2",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.7"
+                "php": ">=5.6"
             },
             "type": "library",
             "autoload": {
@@ -40,7 +41,7 @@
                 }
             ],
             "description": "Library to help build Angular based WordPress theme.",
-            "time": "2018-01-04T02:19:56+00:00"
+            "time": "2018-01-04 16:59:01"
         }
     ],
     "packages-dev": [],
