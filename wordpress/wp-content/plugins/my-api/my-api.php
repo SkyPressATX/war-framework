@@ -12,7 +12,7 @@
  * @package         My_Api
  */
 
- require_once __DIR__ '/vendor/autoload.php';
+ require_once __DIR__ . '/vendor/autoload.php';
 
  use WAR\Api as WAR_Api;
 
