@@ -6,7 +6,7 @@
   "apps": [
     {
       "root": "src",
-      "outDir": "../../wordpress/wp-content/themes/my-theme/src",
+      "outDir": "../../wordpress/wp-content/themes/cx-ng-theme/src",
       "assets": [
         "assets",
         "favicon.ico"
