@@ -1,0 +1,56 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "ef4c6ddc0a53f94192ae27fd0f93ac16",
+    "packages": [
+        {
+            "name": "skypress/war-ng-theme",
+            "version": "v0.1.0-alpha",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SkyPressATX/war-ng-theme.git",
+                "reference": "c529fddeff933afb4bc29c37da60231e11a2792c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SkyPressATX/war-ng-theme/zipball/c529fddeff933afb4bc29c37da60231e11a2792c",
+                "reference": "c529fddeff933afb4bc29c37da60231e11a2792c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WAR\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ben Moore",
+                    "email": "bmo@skypress.io"
+                }
+            ],
+            "description": "Library to help build Angular based WordPress theme.",
+            "time": "2018-01-04T02:19:56+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "alpha",
+    "stability-flags": {
+        "skypress/war-ng-theme": 15
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

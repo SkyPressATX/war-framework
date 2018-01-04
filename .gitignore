@@ -14,6 +14,7 @@ angular/out-tsc
 
 # dependencies
 angular/node_modules
+**/vendor
 
 # IDEs and editors
 angular/.idea
@@ -61,7 +62,7 @@ wordpress/wp-content/mu-plugins/wpengine-common
 wordpress/wp-content/mysql.sql
 
 # extra WordPress files
-wordpress/*/index.html
+wordpress/**/index.html
 wordpress/wp-content/index.php
 wordpress/wp-content/themes/index.php
 wordpress/wp-content/plugins/index.php
@@ -110,6 +111,3 @@ wordpress/wp-content/upgrade
 # Any kind of .git anything
 wordpress/wp-content/*.git*
 wordpress/wp-content/*.git/*
-
-# No Composer Files
-#*composer.*
