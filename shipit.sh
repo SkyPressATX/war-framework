@@ -4,7 +4,7 @@
 
 
 if [[ -n ${1} ]]; then
-	if [[ -n ${2} ]]; then root=${2} else root="/usr/local/bin/composer.phar" fi
+	if [[ -n ${2} ]]; then root=${2} else root="/usr/local/bin/composer.phar" fi;
 	dir=$(pwd -P)
 	current_branch=$(git rev-parse --abbrev-ref HEAD)
 	git subtree split --prefix=wordpress -b shipit
