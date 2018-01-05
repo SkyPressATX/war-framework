@@ -13,7 +13,7 @@ angular/tmp
 angular/out-tsc
 
 # dependencies
-angular/node_modules
+**/node_modules
 **/vendor
 
 # IDEs and editors
