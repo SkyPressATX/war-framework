@@ -5,7 +5,7 @@
 if [[ -n ${2} ]]; then
 	root=${2}
 else
-	root="/usr/local/bin/composer"
+	root="/usr/local/bin/composer.phar"
 fi
 
 if [[ -n ${1} ]]; then
