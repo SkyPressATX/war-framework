@@ -8,7 +8,7 @@ if [[ -n ${1} ]]; then
 	current_branch=$(git rev-parse --abbrev-ref HEAD)
 	git subtree split --prefix=wordpress -b shipit
 	git checkout shipit
-	find ${dir}/wp-content -type f -iname "composer.json" -d 3 -execdir composer install --prefer-source -o \;
+	find ./wp-content -type f -iname "composer.json" -d 3 -execdir composer install --prefer-source -o \;
 	git add . --all
 	git commit -am "Pre-ship commit"
 	git push -f ${1} :shipit
