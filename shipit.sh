@@ -11,7 +11,7 @@ if [[ -n ${1} ]]; then
 	find ${dir}/wp-content -type f -iname "composer.json" -d 3 -execdir composer install --prefer-source -o \;
 	git add . --all
 	git commit -am "Pre-ship commit"
-	git push -f --squash ${1} :shipit
+	git push -f ${1} :shipit
 	git checkout ${current_branch}
 	git branch -D shipit
 	exit 0
