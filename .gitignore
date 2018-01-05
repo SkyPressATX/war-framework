@@ -108,6 +108,7 @@ wordpress/wp-content/upgrade
 *.wmv
 *.avi
 
-# No .gitignores except this one
+# No .gitignores except this one and /wordpress/.gitignore
 wordpress/**/.gitignore
+!wordpress/.gitignore
 angular/**/.gitignore
