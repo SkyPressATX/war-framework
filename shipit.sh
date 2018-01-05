@@ -6,7 +6,8 @@
 if [[ -n ${1} ]]; then
 	dir=$(pwd -P)
 	current_branch=$(git rev-parse --abbrev-ref HEAD)
-	git checkout -b shipit $(git subtree split -P wordpress)
+	git subtree split --prefix=wordpress -b shipit
+	git checkout shipit
 	find ${dir}/wp-content -type f -iname "composer.json" -d 3 -execdir composer install --prefer-source -o \;
 	git add . --all
 	git commit -am "Pre-ship commit"
