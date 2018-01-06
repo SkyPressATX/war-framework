@@ -1,0 +1,6 @@
+wp-content/**/.git*
+**/.git
+**/.git*
+!.gitignore
+angular
+wordpress

@@ -1,0 +1,6 @@
+{
+    "minimum-stability": "alpha",
+    "require": {
+        "skypress/war-ng-theme": "^0.1.0@alpha"
+    }
+}
