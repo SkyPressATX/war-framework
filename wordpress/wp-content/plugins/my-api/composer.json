@@ -1,6 +1,0 @@
-{
-    "minimum-stability": "dev",
-    "require": {
-        "skypress/war-api-plugin": "dev-master"
-    }
-}
