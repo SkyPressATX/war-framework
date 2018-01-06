@@ -1,5 +1,5 @@
-# Customer Experience API
-This repo holds the build and local development functions for the CX API
+# WAR Framework
+This repo holds the build and local development functions for new projects
 
 v0.1.0-alpha
 
@@ -17,5 +17,7 @@ Requires:
 
 * Clone this repo
 * Run `docker-compose up -d`
-* `composer install` in `/wordpress/wp-content/plugins/cx-api`
-* `composer install` in `/wordpress/wp-content/themes/cx-ng-theme`
+* If Linux: `sudo find wordpress -type d -exec chmod 775 {} \; && sudo find wordpress -type f -exec chmod 664 {} \;`
+* View `README.md` in `wordpress/wp-content/plugins`
+* View `README.md` in `wordpress/wp-content/themes`
+* View `README.md` in `angular`
