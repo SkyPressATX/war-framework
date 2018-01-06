@@ -1,9 +1,15 @@
 <?php
 /**
- * Plugin Name:     CX API
- * Description:     Customer Experience API
- * Author:          BMO
+ * Plugin Name:     My Api
+ * Plugin URI:      PLUGIN SITE HERE
+ * Description:     PLUGIN DESCRIPTION HERE
+ * Author:          YOUR NAME HERE
+ * Author URI:      YOUR SITE HERE
+ * Text Domain:     my-api
+ * Domain Path:     /languages
  * Version:         0.1.0
+ *
+ * @package         My_Api
  */
 
  require_once __DIR__ . '/vendor/autoload.php';
