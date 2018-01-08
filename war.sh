@@ -33,8 +33,7 @@ deploy (){
 
 update (){
 	git commit -am 'Pre WAR Update'
-	git checkout -b ${temp_branch} && git pull ${framework_repo} ${framework_branch} --no-ff
-	git add . --all && git commit -am 'Mid WAR Update'
+	git checkout -b ${temp_branch} && git fetch ${framework_repo} ${framework_branch}
 	git checkout ${current_branch} && git checkout ${temp_branch} -- ${update_include}
 	git branch -D ${temp_branch}
 	git commit -am 'Post WAR Update'
