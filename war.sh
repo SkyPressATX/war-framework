@@ -53,7 +53,7 @@ deploy (){
 }
 
 update (){ local OPTIND
-	git checkout -b ${temp_branch} && git pull ${framework_repo} ${framework_branch} -s recursive -X ours
+	git checkout -b ${temp_branch} && git pull ${framework_repo} ${framework_branch} -s recursive -X ours --squash --no-edit
 	git checkout ${current_branch} && git checkout ${temp_branch} -- ${update_include}
 	git branch -D ${temp_branch}
 	git add . --all && git commit -am 'Post WAR Update'
