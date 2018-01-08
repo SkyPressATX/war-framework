@@ -13,7 +13,7 @@ init (){ local OPTIND
 
 }
 
-## war deploy -a (Build Angular) -b <local deploy branch> -B <remote deploy branch> -c <commit message> -C <composer path> -D <deploy from branch> -f (force push) -p <prefix path> -r <remote name>
+## war deploy -a (Build Angular) -b <temp deploy branch> -B <remote deploy branch> -c <commit message> -C <composer path> -D <deploy from branch> -f (force push) -p <prefix path> -r <remote name>
 deploy (){
 	local OPTIND
 	while getopts ":b:B:c:C:D:p:r:af" opt; do
