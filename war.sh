@@ -33,10 +33,11 @@ deploy (){
 
 update (){
 	git commit -am 'Pre WAR Update'
-	git checkout -b ${temp_branch} && git pull ${framework_repo} ${framework_branch} --squash --no-edit -s recursive -X no-renames
+	git checkout -b ${temp_branch} && git pull ${framework_repo} ${framework_branch} --no-ff
+	git add . --all && git commit -am 'Mid WAR Update'
 	git checkout ${current_branch} && git checkout ${temp_branch} -- ${update_include}
 	git branch -D ${temp_branch}
-	git add . --all && git commit -am 'Post WAR Update'
+	git commit -am 'Post WAR Update'
 	exit 0
 }
 
