@@ -2,9 +2,6 @@
 
 *~
 
-# WAR CLI
-war-cli.config
-
 # package locks
 angular/package-lock.json
 angular/yarn.lock
