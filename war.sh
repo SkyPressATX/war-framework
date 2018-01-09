@@ -1,16 +1,15 @@
 #!/bin/bash
 #Author: BMO & Antpb
-#Version: 0.2.0-alpha
+#Version: 0.3.0-alpha
 
-#### CLI Config File ####
-source ./war-cli.config
-
+#### Functions ####
+## war set <config_key> <config_value>
 set (){
 	sed -Ei '' "s/^(${1}=).*/\1\"${2}\"/" ${config_file}
 	exit 0
 }
 
-#### Functions #####
+## war init
 init (){ local OPTIND
 
 }
@@ -31,6 +30,7 @@ deploy (){
 	exit 0
 }
 
+## war deploy
 update (){
 	echo -e "${br}Fetching from WAR Framework Remote"
 	git fetch ${war_framework_repo} ${war_framework_branch}
@@ -40,31 +40,49 @@ update (){
 	exit 0
 }
 
+## war check-config
 check-config (){
-	config-vars=(
-		"angular_build"
-		"app_slug"
-		"commit_message"
-		"deploy_from_local_branch"
-		"deploy_to_remote_branch"
-		"deploy_to_remote_repo"
-		"global_composer_path"
-		"force_push"
-		"prefix_path"
-		"temp_branch"
-		"update_include"
-		"war_framework_repo"
-		"war_framework_branch"
-	)
-	if [ -f ${config_file} ]; then
-		touch ${config_file}
+	base_name=$(basename $(pwd))
+	config_vars=( "angular_build" "app_slug" "commit_message" "deploy_from_local_branch" "deploy_to_remote_branch" "deploy_to_remote_repo" "global_composer_path" "force_push" "prefix_path" "temp_branch" "update_include" "war_framework_repo" "war_framework_branch" )
+	if [ ! -f ${config_file} ]; then
+		echo "##### WAR Cli Config #####" > ${config_file}
 	fi
-	for v in ${config-vars[*]}; do
-
+	for v in ${config_vars[*]}; do
+		if [[ -z $(grep "${v}" ${config_file}) ]]; then
+			case ${v} in
+				"angular_build")
+					echo ${v}'=false' >> ${config_file};;
+				"app_slug")
+					echo ${v}'="'$(basename $(pwd))'"' >> ${config_file};;
+				"commit_message")
+					echo ${v}'=""' >> ${config_file};;
+				"deploy_from_local_branch")
+					echo ${v}'="master"' >> ${config_file};;
+				"deploy_to_remote_branch")
+					echo ${v}'="master"' >> ${config_file};;
+				"deploy_to_remote_repo")
+					echo ${v}'="prod"' >> ${config_file};;
+				"global_composer_path")
+					echo ${v}'="/usr/local/bin/composer"' >> ${config_file};;
+				"force_push")
+					echo ${v}'=false' >> ${config_file};;
+				"prefix_path")
+					echo ${v}'="wordpress"' >> ${config_file};;
+				"temp_branch")
+					echo ${v}'="temp"' >> ${config_file};;
+				"update_include")
+					echo ${v}'="war.sh docker-composer.yml .gitignore wordpress/.gitignore"' >> ${config_file};;
+				"war_framework_branch")
+					echo ${v}'="master"' >> ${config_file};;
+				"war_framework_repo")
+					echo ${v}'="origin"' >> ${config_file};;
+			esac
+		fi
 	done
-
+	exit 0
 }
 
+### Not a command ###
 assign-opts() {
 	local OPTIND
 	while getopts ":aA:b:B:G:D:fm:p:r:" opt; do
@@ -91,8 +109,10 @@ assign-opts() {
 				deploy_to_remote_repo=$OPTARG;;
 		esac
 	done
-	current_branch=$(git rev-parse --abbrev-ref HEAD)
+	#### CLI Config File ####
 	config_file="./war-cli.config"
+	### Common Variables ###
+	current_branch=$(git rev-parse --abbrev-ref HEAD)
 	br="++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n"
 	epoch=$(date +%s)
 }
@@ -102,6 +122,8 @@ if [[ -n ${1} ]]; then
 	cmd=${1}
 	shift 1
 	assign-opts
+	check-config
+	source ${config_file}
 	declare -F ${cmd} &>/dev/null && ${cmd} $* && exit 0 ||
 		echo -e "\n\033[1;31m"Looks like you entered the wrong function."\033[1;000m\n\nUsage is: war <function> <optional argument>\n"
 else
