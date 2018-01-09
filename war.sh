@@ -32,6 +32,8 @@ deploy (){
 }
 
 update (){
+	echo -e "${br}Fetching from WAR Framework Remote"
+	git fetch ${war_framework_repo} ${war_framework_branch}
 	echo -e "${br}Pulling in updated files"
 	git checkout ${war_framework_repo}/${war_framework_branch} -- ${update_include}
 	git add . --all && git commit -am "Post WAR Update"
