@@ -32,38 +32,61 @@ deploy (){
 }
 
 update (){
-	echo -e "${br}Setting up temp branch"
-	git branch ${temp_branch} ${framework_repo}/${framework_branch}
 	echo -e "${br}Pulling in updated files"
-	git checkout ${temp_branch} ${update_include}
+	git checkout ${war_framework_repo}/${war_framework_branch} -- ${update_include}
 	git add . --all && git commit -am "Post WAR Update"
-	echo -e "${br}Clearning up"
-	git branch -D ${temp_branch}
 	exit 0
 }
 
-assign_opts() {
+check-config (){
+	config-vars=(
+		"angular_build"
+		"app_slug"
+		"commit_message"
+		"deploy_from_local_branch"
+		"deploy_to_remote_branch"
+		"deploy_to_remote_repo"
+		"global_composer_path"
+		"force_push"
+		"prefix_path"
+		"temp_branch"
+		"update_include"
+		"war_framework_repo"
+		"war_framework_branch"
+	)
+	if [ -f ${config_file} ]; then
+		touch ${config_file}
+	fi
+	for v in ${config-vars[*]}; do
+
+	done
+
+}
+
+assign-opts() {
 	local OPTIND
-	while getopts ":b:B:c:C:D:p:r:af" opt; do
+	while getopts ":aA:b:B:G:D:fm:p:r:" opt; do
 		case $opt in
 			a)
-				ng_build="1";;
+				angular_build=true;;
+			A)
+				app_slug=$OPTARG;;
 			b)
 				temp_branch=$OPTARG;;
 			B)
-				remote_deploy_branch=$OPTARG;;
-			c)
-				commit_message=$OPTARG;;
-			C)
+				deploy_to_remote_branch=$OPTARG;;
+			G)
 				global_composer_path=$OPTARG;;
 			D)
-				deploy_from_branch=$OPTARG;;
+				deploy_from_local_branch=$OPTARG;;
 			f)
-				force_push="-f";;
+				force_push=true;;
+			m)
+				commit_message=$OPTARG;;
 			p)
 				prefix_path=$OPTARG;;
 			r)
-				deploy_remote=$OPTARG;;
+				deploy_to_remote_repo=$OPTARG;;
 		esac
 	done
 	current_branch=$(git rev-parse --abbrev-ref HEAD)
@@ -76,7 +99,7 @@ assign_opts() {
 if [[ -n ${1} ]]; then
 	cmd=${1}
 	shift 1
-	assign_opts
+	assign-opts
 	declare -F ${cmd} &>/dev/null && ${cmd} $* && exit 0 ||
 		echo -e "\n\033[1;31m"Looks like you entered the wrong function."\033[1;000m\n\nUsage is: war <function> <optional argument>\n"
 else
