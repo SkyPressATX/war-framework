@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 #Author: BMO & Antpb
 #Version: 0.1.0-alpha
 
