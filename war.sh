@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 #Author: BMO & Antpb
 #Version: 0.1.0-alpha
 
@@ -32,6 +32,10 @@ deploy (){
 }
 
 update (){
+	echo -e "${br}Setting up temp branch"
+	git fetch ${framework_repo} ${framework_branch}
+	git checkout -B ${temp_branch} ${framework_repo}/${framework_branch}
+
 	git commit -am 'Pre WAR Update'
 	git checkout -b ${temp_branch} && git fetch ${framework_repo} ${framework_branch}
 	git checkout ${current_branch} && git checkout ${temp_branch} -- ${update_include}
