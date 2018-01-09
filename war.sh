@@ -33,8 +33,6 @@ deploy (){
 
 update (){
 	echo -e "${br}Setting up temp branch"
-	git add . --all && git commit -am "Pre WAR Update"
-	git fetch ${framework_repo} ${framework_branch}
 	git branch ${temp_branch} ${framework_repo}/${framework_branch}
 	echo -e "${br}Pulling in updated files"
 	git checkout ${temp_branch} ${update_include}
