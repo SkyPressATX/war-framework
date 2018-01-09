@@ -71,7 +71,7 @@ check-config (){
 				"temp_branch")
 					echo ${v}'="temp"' >> ${config_file};;
 				"update_include")
-					echo ${v}'="war.sh docker-composer.yml .gitignore wordpress/.gitignore"' >> ${config_file};;
+					echo ${v}'="war.sh docker-compose.yml .gitignore wordpress/.gitignore"' >> ${config_file};;
 				"war_framework_branch")
 					echo ${v}'="master"' >> ${config_file};;
 				"war_framework_repo")
@@ -79,7 +79,6 @@ check-config (){
 			esac
 		fi
 	done
-	exit 0
 }
 
 ### Not a command ###
