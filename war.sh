@@ -1,6 +1,39 @@
 #!/bin/bash
 #Author: BMO & Antpb
-#Version: 0.3.0-alpha
+#Version: 0.3.1-alpha
+
+### Not a command ###
+assign-opts() {
+	local OPTIND
+	while getopts ":aA:b:B:G:D:fm:p:r:" opt; do
+		case $opt in
+			a)
+				angular_build=true;;
+			A)
+				app_slug=$OPTARG;;
+			b)
+				temp_branch=$OPTARG;;
+			B)
+				deploy_to_remote_branch=$OPTARG;;
+			G)
+				global_composer_path=$OPTARG;;
+			D)
+				deploy_from_local_branch=$OPTARG;;
+			f)
+				force_push="-f";;
+			m)
+				commit_message=$OPTARG;;
+			p)
+				prefix_path=$OPTARG;;
+			r)
+				deploy_to_remote_repo=$OPTARG;;
+		esac
+	done
+	### Common Variables ###
+	current_branch=$(git rev-parse --abbrev-ref HEAD)
+	br="++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n"
+	epoch=$(date +%s)
+}
 
 #### Functions ####
 ## war set <config_key> <config_value>
@@ -17,13 +50,13 @@ init (){ local OPTIND
 ## war deploy -a (Build Angular) -b <temp deploy branch> -B <remote deploy branch> -c <commit message> -C <composer path> -D <deploy from branch> -f (force push) -p <prefix path> -r <remote name>
 deploy (){
 	echo -e "${br}Splitting out WordPress into temporary branch"
-	git add . --all && git commit -am "${commit_message}" && git checkout ${deploy_from_branch}
+	git add . --all && git commit -am "${commit_message}" && git checkout ${deploy_from_local_branch}
 	git subtree split --prefix=${prefix_path} -b ${temp_branch} && git checkout ${temp_branch}
 	echo -e "${br}Running composer install for plugins and themes"
 	find wp-content -maxdepth 3 -iname "composer.json" -type f -execdir php ${global_composer_path} install --no-dev --prefer-source -o \;
 	find wp-content -iname ".git" -type d -exec rm -rf "{}" \;
-	echo -e "${br}Pushing ${temp_branch} to ${deploy_remote}:${remote_deploy_branch}"
-	git add . --all && git commit -am "${commit_message}" && git push ${force_push} ${deploy_remote} ${temp_branch}:${remote_deploy_branch}
+	echo -e "${br}Pushing ${temp_branch} to ${deploy_rdeploy_to_remote_repoemote}:${deploy_to_remote_branch}"
+	git add . --all && git commit -am "${commit_message}" && git push ${force_push} ${deploy_to_remote_repo} ${temp_branch}:${deploy_to_remote_branch}
 	echo -e "${br}Cleaning up after ourselves"
 	git checkout ${current_branch} && git branch -D ${temp_branch}
 	rm -rf ./wp-content
@@ -65,7 +98,7 @@ check-config (){
 				"global_composer_path")
 					echo ${v}'="/usr/local/bin/composer"' >> ${config_file};;
 				"force_push")
-					echo ${v}'=false' >> ${config_file};;
+					echo ${v}'=""' >> ${config_file};;
 				"prefix_path")
 					echo ${v}'="wordpress"' >> ${config_file};;
 				"temp_branch")
@@ -81,49 +114,16 @@ check-config (){
 	done
 }
 
-### Not a command ###
-assign-opts() {
-	local OPTIND
-	while getopts ":aA:b:B:G:D:fm:p:r:" opt; do
-		case $opt in
-			a)
-				angular_build=true;;
-			A)
-				app_slug=$OPTARG;;
-			b)
-				temp_branch=$OPTARG;;
-			B)
-				deploy_to_remote_branch=$OPTARG;;
-			G)
-				global_composer_path=$OPTARG;;
-			D)
-				deploy_from_local_branch=$OPTARG;;
-			f)
-				force_push=true;;
-			m)
-				commit_message=$OPTARG;;
-			p)
-				prefix_path=$OPTARG;;
-			r)
-				deploy_to_remote_repo=$OPTARG;;
-		esac
-	done
-	#### CLI Config File ####
-	config_file="./war-cli.config"
-	### Common Variables ###
-	current_branch=$(git rev-parse --abbrev-ref HEAD)
-	br="++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n"
-	epoch=$(date +%s)
-}
-
 #### Process Commands ####
 if [[ -n ${1} ]]; then
 	cmd=${1}
 	shift 1
-	assign-opts
+	#### CLI Config File ####
+	config_file="./war-cli.config"
 	check-config
 	source ${config_file}
-	declare -F ${cmd} &>/dev/null && ${cmd} $* && exit 0 ||
+	assign-opts $*
+	declare -F ${cmd} &>/dev/null && ${cmd} && exit 0 ||
 		echo -e "\n\033[1;31m"Looks like you entered the wrong function."\033[1;000m\n\nUsage is: war <function> <optional argument>\n"
 else
 	echo -e "\nUsage is: war <function> <optional argument>\n"
