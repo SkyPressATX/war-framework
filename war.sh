@@ -1,6 +1,6 @@
 #!/bin/bash
 #Author: BMO & Antpb
-#Version: 0.3.1-alpha
+#Version: 0.3.2-alpha
 
 ### Not a command ###
 assign-opts() {
@@ -39,7 +39,6 @@ assign-opts() {
 ## war set <config_key> <config_value>
 set (){
 	sed -Ei '' "s/^(${1}=).*/\1\"${2}\"/" ${config_file}
-	exit 0
 }
 
 ## war init
@@ -49,32 +48,53 @@ init (){ local OPTIND
 
 ## war deploy -a (Build Angular) -b <temp deploy branch> -B <remote deploy branch> -c <commit message> -C <composer path> -D <deploy from branch> -f (force push) -p <prefix path> -r <remote name>
 deploy (){
+	if [[ -z ${commit_message} ]]; then
+		commit_message="Deploy"
+	fi
+
+	echo -e "${br}Saving current work"
+	git add . --all && git commit -am "${commit_message}"
+	git checkout ${deploy_from_local_branch}
+
+	if [[ ${angular_build} == true ]]; then
+		echo -e "${br}Building Angular Files"
+		find angular -maxdepth 2 -iname "package.json" -type f -execdir yarn build \;
+	fi
+
 	echo -e "${br}Splitting out WordPress into temporary branch"
-	git add . --all && git commit -am "${commit_message}" && git checkout ${deploy_from_local_branch}
 	git subtree split --prefix=${prefix_path} -b ${temp_branch} && git checkout ${temp_branch}
+
 	echo -e "${br}Running composer install for plugins and themes"
 	find wp-content -maxdepth 3 -iname "composer.json" -type f -execdir php ${global_composer_path} install --no-dev --prefer-source -o \;
 	find wp-content -iname ".git" -type d -exec rm -rf "{}" \;
+
 	echo -e "${br}Pushing ${temp_branch} to ${deploy_rdeploy_to_remote_repoemote}:${deploy_to_remote_branch}"
-	git add . --all && git commit -am "${commit_message}" && git push ${force_push} ${deploy_to_remote_repo} ${temp_branch}:${deploy_to_remote_branch}
+	git add . --all && git commit -am "${commit_message}"
+	git push ${force_push} ${deploy_to_remote_repo} ${temp_branch}:${deploy_to_remote_branch}
+
 	echo -e "${br}Cleaning up after ourselves"
 	git checkout ${current_branch} && git branch -D ${temp_branch}
 	rm -rf ./wp-content
-	exit 0
 }
 
 ## war deploy
 update (){
+	if [[ -z ${commit_message} ]]; then
+		commit_message="Post WAR Update"
+	fi
+
 	echo -e "${br}Fetching from WAR Framework Remote"
 	git fetch ${war_framework_repo} ${war_framework_branch}
+
 	echo -e "${br}Pulling in updated files"
 	git checkout ${war_framework_repo}/${war_framework_branch} -- ${update_include}
-	git add . --all && git commit -am "Post WAR Update"
-	exit 0
+	git add . --all && git commit -am "${commit_message}"
 }
 
 ## war check-config
 check-config (){
+	#### CLI Config File ####
+	config_file="./war-cli.config"
 	base_name=$(basename $(pwd))
 	config_vars=( "angular_build" "app_slug" "commit_message" "deploy_from_local_branch" "deploy_to_remote_branch" "deploy_to_remote_repo" "global_composer_path" "force_push" "prefix_path" "temp_branch" "update_include" "war_framework_repo" "war_framework_branch" )
 	if [ ! -f ${config_file} ]; then
@@ -118,8 +138,6 @@ check-config (){
 if [[ -n ${1} ]]; then
 	cmd=${1}
 	shift 1
-	#### CLI Config File ####
-	config_file="./war-cli.config"
 	check-config
 	source ${config_file}
 	assign-opts $*
