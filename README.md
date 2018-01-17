@@ -1,7 +1,7 @@
 # WAR Framework
 This repo holds the build and local development functions for new projects
 
-*v0.3.0-alpha*
+*v0.4.0-alpha*
 
 ## Requires:
 
@@ -45,7 +45,7 @@ sudo find wordpress -type d -exec chmod 775 {} \; && sudo find wordpress -type f
 The WAR Framework comes with basic CLI to help keep things uniform. This is the `war.sh` script, and it's corresponding `war-cli.config` config file.
 
 ```
-./war.sh init <my-app-name>
+./war.sh init <my-app-name> -P <angular_prefix>
 ```
 
 The `init` command will:
@@ -57,7 +57,7 @@ The `init` command will:
 * Run `composer install` in `wordpress/wp-content/themes/<my-app-name-theme>`
 * Create a new Angular Project in `angular/<my-app-name-theme>`
 * Run `yarn add @skypress/wp-client@latest` in `angular/<my-app-name-theme>`
-* Set proper `outDir` and `prefix` values in `angular/<my-app-name-theme>/.angular-cli.json`
+* Set proper `outDir` and `angular_prefix` values in `angular/<my-app-name-theme>/.angular-cli.json`
 
 _The `init` command will **not**_
 
