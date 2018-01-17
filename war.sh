@@ -1,6 +1,6 @@
 #!/bin/bash
 #Author: BMO & Antpb
-#Version: 0.4.0-alpha
+#Version: 0.4.1-alpha
 
 ### Not a command ###
 assign-opts() {
@@ -39,7 +39,7 @@ assign-opts() {
 
 #### Functions ####
 ## war set <config_key> <config_value>
-set (){
+config-set (){
 	sed -Ei '' "s/^(${1}=).*/\1\"${2}\"/" ${config_file}
 }
 
@@ -48,6 +48,12 @@ init (){
 	echo -e "${br}Checking Config"
 	rm ${config_file}
 	check-config
+
+	echo -e "${br}Setting custom variable in Config"
+	config-set angular_prefix ${angular_prefix}
+	config-set app_slug ${app_slug}
+	config-set global_composer_path ${global_composer_path}
+	config-set prefix_path ${prefix_path}
 
 	echo -e "${br}Setting up Plugin and Theme"
 	mv ${prefix_path}/wp-content/plugins/my-api/my-api.php ${prefix_path}/wp-content/plugins/my-api/${app_slug}-api.php
@@ -63,8 +69,8 @@ init (){
 		sed -Ei '' "s/^(\"outDir\"\:\s)\"dist\"$/\1\"../../wordpress/wp-content/themes/${app_slug}-theme/src\"/" angular/${app_slug}/.angular-cli.json
 
 		echo -e "${br}Adding WP Client"
-		find angular/${app-slug} -type f -iname "package.json" -execdir yarn add @skypress/wp-client@latest \;
-		find angular/${app-slug} -type f -iname "package.json" -execdir yarn upgrade \;
+		find angular/${app_slug} -type f -iname "package.json" -execdir yarn add @skypress/wp-client@latest \;
+		find angular/${app_slug} -type f -iname "package.json" -execdir yarn upgrade \;
 	fi
 }
 
