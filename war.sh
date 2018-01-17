@@ -73,7 +73,7 @@ init (){
 	if [[ true == ${angular_build} ]]; then
 		echo -e "${br}Building Angular project : ${app_slug}-theme"
 		find angular -type f -iname "README.md" -execdir ng new ${app_slug} -is true -it true -p ${angular_prefix} -sg true \;
-		sed -Ei '' "s/^(\"outDir\"\: ).*$/\1\"..\/..\/wordpress\/wp-content\/themes\/${app_slug}-theme\/src\"/" angular/${app_slug}/.angular-cli.json
+		find angular/${app_slug} -type f -iname ".angular-cli.json" -maxdepth 1 -exec sed -Ei '' "s/(\"outDir\"\: ).*$/\1\"..\/..\/${prefix_path}\/wp-content\/themes\/${app_slug}-theme\/src\",/" {} \;
 
 		echo -e "${br}Adding WP Client"
 		find angular/${app_slug} -maxdepth 1 -type f -iname "package.json" -execdir yarn add @skypress/wp-client@latest \;
