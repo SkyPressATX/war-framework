@@ -2,6 +2,9 @@
 
 *~
 
+#no war-cli.config, this will get built with ./war.sh init
+war-cli.config
+
 # package locks
 angular/package-lock.json
 angular/yarn.lock
