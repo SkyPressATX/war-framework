@@ -54,11 +54,8 @@ init (){
 	mv ${prefix_path}/wp-content/plugins/my-api ${prefix_path}/wp-content/plugins/${app_slug}-api
 	mv ${prefix_path}/wp-content/themes/my-theme ${prefix_path}/wp-content/themes/${app_slug}-theme
 
-	echo -e "${br}Installing Composer in plugin/${app_slug}-api"
-	composer install -d=${prefix_path}/wp-content/plugins/${app_slug}-api
-
-	echo -e "${br}Installing Composer in themes/${app_slug}-theme"
-	composer install -d=${prefix_path}/wp-content/themes/${app_slug}-theme
+	echo -e "${br}Installing Composer for Plugin and Theme"
+	find wp-content -maxdepth 3 -iname "composer.json" -type f -execdir php ${global_composer_path} install --no-dev --prefer-source -o \;
 
 	if [[ true == ${angular_build} ]]; then
 		echo -e "${br}Building Angular project : ${app_slug}-theme"
