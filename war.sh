@@ -5,7 +5,7 @@
 ### Not a command ###
 assign-opts() {
 	local OPTIND
-	while getopts ":aA:b:B:G:D:fm:p:r:" opt; do
+	while getopts ":aA:b:B:G:D:fm:p:P:r:" opt; do
 		case $opt in
 			a)
 				angular_build=true;;
@@ -125,7 +125,6 @@ update (){
 check-config (){
 	#### CLI Config File ####
 	config_file="./war-cli.config"
-	base_name=$(basename $(pwd))
 	config_vars=( "angular_build" "angular_prefix" "app_slug" "commit_message" "deploy_from_local_branch" "deploy_to_remote_branch" "deploy_to_remote_repo" "global_composer_path" "force_push" "prefix_path" "temp_branch" "update_include" "war_framework_repo" "war_framework_branch" )
 	if [ ! -f ${config_file} ]; then
 		echo "##### WAR Cli Config #####" > ${config_file}
