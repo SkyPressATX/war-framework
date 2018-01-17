@@ -1,7 +1,7 @@
 # WAR Framework
 This repo holds the build and local development functions for new projects
 
-*v0.4.2-alpha*
+*v0.4.3-alpha*
 
 ## Requires:
 
@@ -51,18 +51,19 @@ The WAR Framework comes with basic CLI to help keep things uniform. This is the 
 The `init` command will:
 
 * Set proper variables in `war-cli.config`
-* Rename the starter plugin to `wordpress/wp-content/plugins/<my-app-name-api>` and it's main `.php` file to `<my-app-name-api>.php`
-* Run `composer install` in `wordpress/wp-content/plugins/<my-app-name-api>`
-* Rename the starter theme to `wordpress/wp-content/themes/<my-app-name-theme>`
-* Run `composer install` in `wordpress/wp-content/themes/<my-app-name-theme>`
-* Create a new Angular Project in `angular/<my-app-name-theme>` if `-a` flag is used
-* Run `yarn add @skypress/wp-client@latest` in `angular/<my-app-name-theme>`
-* Set proper `outDir` and `angular_prefix` values in `angular/<my-app-name-theme>/.angular-cli.json`
+* Rename the starter plugin to `wordpress/wp-content/plugins/<my-app-name>-api` and it's main `.php` file to `<my-app-name>-api.php`
+* Run `composer install` in `wordpress/wp-content/plugins/<my-app-name>-api`
+* Rename the starter theme to `wordpress/wp-content/themes/<my-app-name>-theme`
+* Run `composer install` in `wordpress/wp-content/themes/<my-app-name>-theme`
+* Create a new Angular Project in `angular/<my-app-name>` if `-a` flag is used
+* Run `yarn add @skypress/wp-client@latest` in `angular/<my-app-name>`
+* Set proper `outDir` and `angular_prefix` values in `angular/<my-app-name>/.angular-cli.json`
+* Set proper Directive call in `wordpress/wp-content/themes/<my-app-name>-theme/index.php`
 
 _The `init` command will **not**_
 
-* Edit comment blocks in `wordpress/wp-content/plugins/<my-app-name-api>/<my-app-name-api>.php`
-* Edit comment blocks in `wordpress/wp-content/themes/<my-app-name-theme>/style.css`
+* Edit comment blocks in `wordpress/wp-content/plugins/<my-app-name>-api/<my-app-name>-api.php`
+* Edit comment blocks in `wordpress/wp-content/themes/<my-app-name>-theme/style.css`
 
 ## Step 4: Set up remote git repositories
 
