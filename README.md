@@ -45,7 +45,7 @@ sudo find wordpress -type d -exec chmod 775 {} \; && sudo find wordpress -type f
 The WAR Framework comes with basic CLI to help keep things uniform. This is the `war.sh` script, and it's corresponding `war-cli.config` config file.
 
 ```
-./war.sh init -A <my-app-name> -P <angular_prefix>
+./war.sh init -A <my-app-name> -P <angular_prefix> -a
 ```
 
 The `init` command will:
@@ -55,7 +55,7 @@ The `init` command will:
 * Run `composer install` in `wordpress/wp-content/plugins/<my-app-name-api>`
 * Rename the starter theme to `wordpress/wp-content/themes/<my-app-name-theme>`
 * Run `composer install` in `wordpress/wp-content/themes/<my-app-name-theme>`
-* Create a new Angular Project in `angular/<my-app-name-theme>`
+* Create a new Angular Project in `angular/<my-app-name-theme>` if `-a` flag is used
 * Run `yarn add @skypress/wp-client@latest` in `angular/<my-app-name-theme>`
 * Set proper `outDir` and `angular_prefix` values in `angular/<my-app-name-theme>/.angular-cli.json`
 
