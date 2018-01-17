@@ -71,12 +71,12 @@ init (){
 	find ${prefix_path}/wp-content -maxdepth 3 -iname "composer.json" -type f -execdir php ${global_composer_path} install --no-dev --prefer-source -o \;
 
 	if [[ true == ${angular_build} ]]; then
-		echo -e "${br}Building Angular project : ${app_slug}-theme"
+		echo -e "${br}Building Angular project : ${app_slug}"
 		find angular -type f -iname "README.md" -execdir ng new ${app_slug} -is true -it true -p ${angular_prefix} -sg true \;
 		find angular/${app_slug} -type f -iname ".angular-cli.json" -maxdepth 1 -execdir sed -Ei '' "s/(\"outDir\"\: ).*$/\1\"..\/..\/${prefix_path}\/wp-content\/themes\/${app_slug}-theme\/src\",/" .angular-cli.json \;
 
 		echo -e "${br}Updating Themes index.php file"
-		find ${prefix_path}/wp-content/themes/${app_slug}-theme -maxdepth 1 -type f -iname "index.php" -execdir sed -Ei '' "s/app/${angular_prefix}/" index.php \;
+		find ${prefix_path}/wp-content/themes/${app_slug}-theme -maxdepth 1 -type f -iname "index.php" -execdir sed -Ei '' "s/app/${angular_prefix}/g" index.php \;
 
 		echo -e "${br}Adding WP Client"
 		find angular/${app_slug} -maxdepth 1 -type f -iname "package.json" -execdir yarn add @skypress/wp-client@latest \;
