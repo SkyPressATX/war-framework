@@ -1,6 +1,6 @@
 #!/bin/bash
 #Author: BMO & Antpb
-#Version: 0.4.1-alpha
+#Version: 0.4.2-alpha
 
 ### Not a command ###
 assign-opts() {
@@ -55,9 +55,13 @@ init (){
 	config-set prefix_path ${prefix_path}
 
 	echo -e "${br}Setting up Plugin and Theme"
-	mv ${prefix_path}/wp-content/plugins/my-api/my-api.php ${prefix_path}/wp-content/plugins/my-api/${app_slug}-api.php
-	mv ${prefix_path}/wp-content/plugins/my-api ${prefix_path}/wp-content/plugins/${app_slug}-api
-	mv ${prefix_path}/wp-content/themes/my-theme ${prefix_path}/wp-content/themes/${app_slug}-theme
+	if [[ -f ${prefix_path}/wp-content/plugins/my-api/my-api.php ]]; then
+		mv ${prefix_path}/wp-content/plugins/my-api/my-api.php ${prefix_path}/wp-content/plugins/my-api/${app_slug}-api.php
+		mv ${prefix_path}/wp-content/plugins/my-api ${prefix_path}/wp-content/plugins/${app_slug}-api
+	fi
+	if [[ -f ${prefix_path}/wp-content/themes/my-theme/style.css ]]; then
+		mv ${prefix_path}/wp-content/themes/my-theme ${prefix_path}/wp-content/themes/${app_slug}-theme
+	fi
 
 	echo -e "${br}Installing Composer for Plugin and Theme"
 	if [[ ! -f ${global_composer_path} ]]; then
@@ -69,11 +73,10 @@ init (){
 	if [[ true == ${angular_build} ]]; then
 		echo -e "${br}Building Angular project : ${app_slug}-theme"
 		find angular -type f -iname "README.md" -execdir ng new ${app_slug} -is true -it true -p ${angular_prefix} -sg true \;
-		sed -Ei '' "s/^(\"outDir\"\:\s)\"dist\"$/\1\"..\/..\/wordpress\/wp-content\/themes\/${app_slug}-theme\/src\"/" angular/${app_slug}/.angular-cli.json
+		sed -Ei '' "s/^(\"outDir\"\: ).*$/\1\"..\/..\/wordpress\/wp-content\/themes\/${app_slug}-theme\/src\"/" angular/${app_slug}/.angular-cli.json
 
 		echo -e "${br}Adding WP Client"
 		find angular/${app_slug} -maxdepth 1 -type f -iname "package.json" -execdir yarn add @skypress/wp-client@latest \;
-		find angular/${app_slug} -maxdepth 1 -type f -iname "package.json" -execdir yarn upgrade \;
 	fi
 }
 

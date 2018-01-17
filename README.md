@@ -1,7 +1,7 @@
 # WAR Framework
 This repo holds the build and local development functions for new projects
 
-*v0.4.0-alpha*
+*v0.4.2-alpha*
 
 ## Requires:
 
