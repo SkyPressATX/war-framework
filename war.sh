@@ -52,7 +52,6 @@ init (){
 	echo -e "${br}Setting custom variable in Config"
 	config-set angular_prefix ${angular_prefix}
 	config-set app_slug ${app_slug}
-	config-set global_composer_path ${global_composer_path}
 	config-set prefix_path ${prefix_path}
 
 	echo -e "${br}Setting up Plugin and Theme"
@@ -61,16 +60,20 @@ init (){
 	mv ${prefix_path}/wp-content/themes/my-theme ${prefix_path}/wp-content/themes/${app_slug}-theme
 
 	echo -e "${br}Installing Composer for Plugin and Theme"
+	if [[ ! -f ${global_composer_path} ]]; then
+		echo "${br}No Global Composer Path found, Check wp-cli.config and set accordingly"
+		exit 1;
+	fi
 	find wp-content -maxdepth 3 -iname "composer.json" -type f -execdir php ${global_composer_path} install --no-dev --prefer-source -o \;
 
 	if [[ true == ${angular_build} ]]; then
 		echo -e "${br}Building Angular project : ${app_slug}-theme"
 		find angular -type f -iname "README.md" -execdir ng new ${app_slug} -is true -it true -p ${angular_prefix} -sg true \;
-		sed -Ei '' "s/^(\"outDir\"\:\s)\"dist\"$/\1\"../../wordpress/wp-content/themes/${app_slug}-theme/src\"/" angular/${app_slug}/.angular-cli.json
+		sed -Ei '' "s/^(\"outDir\"\:\s)\"dist\"$/\1\"..\/..\/wordpress\/wp-content\/themes\/${app_slug}-theme\/src\"/" angular/${app_slug}/.angular-cli.json
 
 		echo -e "${br}Adding WP Client"
-		find angular/${app_slug} -type f -iname "package.json" -execdir yarn add @skypress/wp-client@latest \;
-		find angular/${app_slug} -type f -iname "package.json" -execdir yarn upgrade \;
+		find angular/${app_slug} -maxdepth 1 -type f -iname "package.json" -execdir yarn add @skypress/wp-client@latest \;
+		find angular/${app_slug} -maxdepth 1 -type f -iname "package.json" -execdir yarn upgrade \;
 	fi
 }
 
