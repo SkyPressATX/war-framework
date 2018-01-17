@@ -64,7 +64,7 @@ init (){
 		echo "${br}No Global Composer Path found, Check wp-cli.config and set accordingly"
 		exit 1;
 	fi
-	find wp-content -maxdepth 3 -iname "composer.json" -type f -execdir php ${global_composer_path} install --no-dev --prefer-source -o \;
+	find ${prefix_path}/wp-content -maxdepth 3 -iname "composer.json" -type f -execdir php ${global_composer_path} install --no-dev --prefer-source -o \;
 
 	if [[ true == ${angular_build} ]]; then
 		echo -e "${br}Building Angular project : ${app_slug}-theme"
