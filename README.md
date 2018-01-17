@@ -45,7 +45,7 @@ sudo find wordpress -type d -exec chmod 775 {} \; && sudo find wordpress -type f
 The WAR Framework comes with basic CLI to help keep things uniform. This is the `war.sh` script, and it's corresponding `war-cli.config` config file.
 
 ```
-./war.sh init <my-app-name> -P <angular_prefix>
+./war.sh init -A <my-app-name> -P <angular_prefix>
 ```
 
 The `init` command will:
