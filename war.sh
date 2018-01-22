@@ -1,6 +1,6 @@
 #!/bin/bash
 #Author: BMO & Antpb
-#Version: 0.4.3-alpha
+#Version: 0.4.4-alpha
 
 ### Not a command ###
 assign-opts() {
@@ -45,10 +45,6 @@ config-set (){
 
 ## war init
 init (){
-	echo -e "${br}Checking Config"
-	rm ${config_file}
-	check-config
-
 	echo -e "${br}Setting custom variable in Config"
 	config-set angular_prefix ${angular_prefix}
 	config-set app_slug ${app_slug}
@@ -73,7 +69,7 @@ init (){
 	if [[ true == ${angular_build} ]]; then
 		echo -e "${br}Building Angular project : ${app_slug}"
 		find angular -type f -iname "README.md" -execdir ng new ${app_slug} -is true -it true -p ${angular_prefix} -sg true \;
-		find angular/${app_slug} -type f -iname ".angular-cli.json" -maxdepth 1 -execdir sed -Ei '' "s/(\"outDir\"\: ).*$/\1\"..\/..\/${prefix_path}\/wp-content\/themes\/${app_slug}-theme\/src\",/" .angular-cli.json \;
+		find angular/${app_slug} -maxdepth 1 -type f -iname ".angular-cli.json" -execdir sed -Ei '' "s/(\"outDir\"\: ).*$/\1\"..\/..\/${prefix_path}\/wp-content\/themes\/${app_slug}-theme\/src\",/" .angular-cli.json \;
 
 		echo -e "${br}Updating Themes index.php file"
 		find ${prefix_path}/wp-content/themes/${app_slug}-theme -maxdepth 1 -type f -iname "index.php" -execdir sed -Ei '' "s/app/${angular_prefix}/g" index.php \;
@@ -136,7 +132,6 @@ update (){
 ## war check-config
 check-config (){
 	#### CLI Config File ####
-	config_file="./war-cli.config"
 	config_vars=( "angular_build" "angular_prefix" "app_slug" "commit_message" "deploy_from_local_branch" "deploy_to_remote_branch" "deploy_to_remote_repo" "global_composer_path" "force_push" "prefix_path" "temp_branch" "update_include" "war_framework_repo" "war_framework_branch" )
 	if [ ! -f ${config_file} ]; then
 		echo "##### WAR Cli Config #####" > ${config_file}
@@ -181,6 +176,7 @@ check-config (){
 if [[ -n ${1} ]]; then
 	cmd=${1}
 	shift 1
+	config_file="./war-cli.config"
 	check-config
 	source ${config_file}
 	assign-opts $*
