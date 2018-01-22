@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "62de7c0bdde7a995c98d97b0608e7951",
-    "content-hash": "1c034ed9b27d060877476cea195d242b",
+    "hash": "a6fc58372a888e07198a63c77bd3b8a9",
+    "content-hash": "57dcd55398de28113cad6b35a7affc53",
     "packages": [
         {
             "name": "firebase/php-jwt",
@@ -55,16 +55,16 @@
         },
         {
             "name": "skypress/war-api-plugin",
-            "version": "0.1.0-alpha",
+            "version": "0.1.1-alpha",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SkyPressATX/war-api-plugin.git",
-                "reference": "d61719658e161b2b6aba64f844d2e9094893f758"
+                "reference": "4c969191a83817f6fce41b034695aa2fca18062b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SkyPressATX/war-api-plugin/zipball/d61719658e161b2b6aba64f844d2e9094893f758",
-                "reference": "d61719658e161b2b6aba64f844d2e9094893f758",
+                "url": "https://api.github.com/repos/SkyPressATX/war-api-plugin/zipball/4c969191a83817f6fce41b034695aa2fca18062b",
+                "reference": "4c969191a83817f6fce41b034695aa2fca18062b",
                 "shasum": ""
             },
             "require": {
@@ -88,7 +88,7 @@
                 }
             ],
             "description": "Library to help extend the WordPress Rest API",
-            "time": "2018-01-22 18:15:16"
+            "time": "2018-01-22 18:30:53"
         }
     ],
     "packages-dev": [],

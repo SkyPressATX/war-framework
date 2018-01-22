@@ -1,6 +1,6 @@
 {
     "minimum-stability": "alpha",
     "require": {
-        "skypress/war-api-plugin": "0.1.0-alpha"
+        "skypress/war-api-plugin": "^0.1.1-alpha"
     }
 }
