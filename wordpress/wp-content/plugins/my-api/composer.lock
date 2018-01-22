@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "76198fcdadafacb993247fbb6933ef1f",
-    "content-hash": "ad1ddae70dd5b39657061a7383a77bb7",
+    "hash": "62de7c0bdde7a995c98d97b0608e7951",
+    "content-hash": "1c034ed9b27d060877476cea195d242b",
     "packages": [
         {
             "name": "firebase/php-jwt",
@@ -55,16 +55,16 @@
         },
         {
             "name": "skypress/war-api-plugin",
-            "version": "dev-master",
+            "version": "0.1.0-alpha",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SkyPressATX/war-api-plugin.git",
-                "reference": "caf55ffef103521bdafb763eb15c7b4a5cd735fa"
+                "reference": "d61719658e161b2b6aba64f844d2e9094893f758"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SkyPressATX/war-api-plugin/zipball/caf55ffef103521bdafb763eb15c7b4a5cd735fa",
-                "reference": "caf55ffef103521bdafb763eb15c7b4a5cd735fa",
+                "url": "https://api.github.com/repos/SkyPressATX/war-api-plugin/zipball/d61719658e161b2b6aba64f844d2e9094893f758",
+                "reference": "d61719658e161b2b6aba64f844d2e9094893f758",
                 "shasum": ""
             },
             "require": {
@@ -84,18 +84,18 @@
             "authors": [
                 {
                     "name": "BMO",
-                    "email": "bmo@wpengine.com"
+                    "email": "bmo@skypress.io"
                 }
             ],
             "description": "Library to help extend the WordPress Rest API",
-            "time": "2018-01-04 19:33:25"
+            "time": "2018-01-22 18:15:16"
         }
     ],
     "packages-dev": [],
     "aliases": [],
-    "minimum-stability": "dev",
+    "minimum-stability": "alpha",
     "stability-flags": {
-        "skypress/war-api-plugin": 20
+        "skypress/war-api-plugin": 15
     },
     "prefer-stable": false,
     "prefer-lowest": false,
