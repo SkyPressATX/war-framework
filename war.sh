@@ -50,7 +50,7 @@ init (){
 	config-set app_slug ${app_slug}
 	config-set prefix_path ${prefix_path}
 
-	echo -e "${br}Setting up Plugin and Theme"
+	echo -e "${br}Setting up Custom Plugin and Theme"
 	if [[ -f ${prefix_path}/wp-content/plugins/my-api/my-api.php ]]; then
 		mv ${prefix_path}/wp-content/plugins/my-api/my-api.php ${prefix_path}/wp-content/plugins/my-api/${app_slug}-api.php
 		mv ${prefix_path}/wp-content/plugins/my-api ${prefix_path}/wp-content/plugins/${app_slug}-api
